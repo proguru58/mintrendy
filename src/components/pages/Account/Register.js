@@ -45,7 +45,8 @@ class Register extends React.Component {
     //*** Initial State ***//
 
     state = {
-        name: undefined,
+        firstName: undefined,
+        lastName: undefined,
         email: undefined,
         password: undefined,
         passwordConfirm: undefined,
@@ -97,8 +98,11 @@ class Register extends React.Component {
 
         this.setState({fieldErrors: {}});
         let fieldErrors = {};
-        if (!this.state.name) {
-            fieldErrors.name = intlStore.getMessage(intlData, 'fieldRequired');
+        if (!this.state.firstName) {
+            fieldErrors.firstName = intlStore.getMessage(intlData, 'fieldRequired');
+        }
+        if (!this.state.lastName) {
+            fieldErrors.lastName = intlStore.getMessage(intlData, 'fieldRequired');
         }
         if (!this.state.email) {
             fieldErrors.email = intlStore.getMessage(intlData, 'fieldRequired');
@@ -116,7 +120,8 @@ class Register extends React.Component {
 
         if (Object.keys(fieldErrors).length === 0) {
             this.context.executeAction(registerAccount, {
-                name: this.state.name,
+                firstName: this.state.firstName,
+                lastName: this.state.lastName,
                 email: this.state.email,
                 password: this.state.password
             });
@@ -170,10 +175,16 @@ class Register extends React.Component {
                     </div>
                     <div className="register__form">
                         <div className="register__form-item">
-                            <InputField label={intlStore.getMessage(intlData, 'name')}
-                                        onChange={this.handleFieldChange.bind(null, 'name')}
+                            <InputField label={intlStore.getMessage(intlData, 'firstName')}
+                                        onChange={this.handleFieldChange.bind(null, 'firstName')}
                                         onEnterPress={this.handleSubmitClick}
-                                        error={this.state.fieldErrors['name']} />
+                                        error={this.state.fieldErrors['firstName']} />
+                        </div>
+                        <div className="register__form-item">
+                            <InputField label={intlStore.getMessage(intlData, 'lastName')}
+                                        onChange={this.handleFieldChange.bind(null, 'lastName')}
+                                        onEnterPress={this.handleSubmitClick}
+                                        error={this.state.fieldErrors['LastName']} />
                         </div>
                         <div className="register__form-item">
                             <InputField label={intlStore.getMessage(intlData, 'email')}

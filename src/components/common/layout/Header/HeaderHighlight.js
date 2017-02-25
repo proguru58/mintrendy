@@ -46,7 +46,7 @@ class HeaderHighlight extends React.Component {
                         &nbsp;
                         <FormattedNumber value="19.90"
                                          style="currency"
-                                         currency="EUR" />
+                                         currency="USD" />
                     </Text>
                 </div>
             </div>

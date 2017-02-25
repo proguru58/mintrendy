@@ -130,7 +130,7 @@ class SideCart extends React.Component {
                                 <Text size="medium">
                                     <FormattedNumber value={subTotal.value}
                                                      style="currency"
-                                                     currency={subTotal.currency} />
+                                                     currency="USD" />
                                 </Text>
                             </div>
                         </div>

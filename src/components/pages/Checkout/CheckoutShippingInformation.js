@@ -56,7 +56,7 @@ class CheckoutShippingInformation extends React.Component {
                 <FormattedNumber
                     value={option.price}
                     style="currency"
-                    currency={option.currency} />
+                    currency="USD" />
             );
             return {
                 value: option.value,

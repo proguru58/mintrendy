@@ -101,7 +101,7 @@ class ProductListItem extends React.Component {
                                     <FormattedNumber
                                         value={this.props.product.pricing.retail}
                                         style="currency"
-                                        currency={this.props.product.pricing.currency} />
+                                        currency="USD" />
                                 </Text>
                             </div>
                         </div>

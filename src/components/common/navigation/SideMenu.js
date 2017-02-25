@@ -90,7 +90,7 @@ class SideMenu extends React.Component {
                                         <Text size="small">
                                             <FormattedMessage
                                                 message={intlStore.getMessage(intlData, 'hi')}
-                                                locales={intlStore.getCurrentLocale()} />, {this.state.user.name.split(' ')[0]}
+                                                locales={intlStore.getCurrentLocale()} />, {this.state.user.firstName + ' ' + this.state.user.lastName}
                                         </Text>
                                     </div>
                                     <div>

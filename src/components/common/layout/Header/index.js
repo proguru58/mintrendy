@@ -20,7 +20,6 @@ class Header extends React.Component {
     render() {
         return (
             <div className="header">
-                <HeaderHighlight />
                 <Breakpoint point="handhelds">
                     <HandheldsHeader {...this.props}></HandheldsHeader>
                 </Breakpoint>

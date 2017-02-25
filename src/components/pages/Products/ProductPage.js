@@ -288,7 +288,7 @@ class ProductPage extends React.Component {
                                                 <FormattedNumber
                                                     value={this.state.product.pricing.retail}
                                                     style="currency"
-                                                    currency={this.state.product.pricing.currency} />
+                                                    currency="USD" />
                                             </Text>
                                         </div>
                                     </div>

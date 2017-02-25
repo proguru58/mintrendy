@@ -98,7 +98,7 @@ class OrderSummary extends React.Component {
                                         <FormattedNumber
                                             value={product.details.pricing.retail}
                                             style="currency"
-                                            currency={product.details.pricing.currency} />
+                                            currency="USD" />
                                     </Text>
                                 </div>
                                 <div className="order-summary__list-total">
@@ -106,7 +106,7 @@ class OrderSummary extends React.Component {
                                         <FormattedNumber
                                             value={product.quantity * product.details.pricing.retail}
                                             style="currency"
-                                            currency={product.details.pricing.currency} />
+                                            currency="USD" />
                                     </Text>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@ class OrderSummary extends React.Component {
                                 <FormattedNumber
                                     value={this.props.checkout.subTotal}
                                     style="currency"
-                                    currency={this.props.checkout.currency} />
+                                    currency="USD" />
                             </Text>
                         </div>
                     </div>
@@ -146,7 +146,7 @@ class OrderSummary extends React.Component {
                                     <FormattedNumber
                                         value={this.props.checkout.shippingCost}
                                         style="currency"
-                                        currency={this.props.checkout.currency} />
+                                        currency="USD" />
                                 </Text>
                                 :
                                 <Text>-</Text>
@@ -166,7 +166,7 @@ class OrderSummary extends React.Component {
                                 <FormattedNumber
                                     value={this.props.checkout.total}
                                     style="currency"
-                                    currency={this.props.checkout.currency} />
+                                    currency="USD" />
                             </Text>
                         </div>
                     </div>
