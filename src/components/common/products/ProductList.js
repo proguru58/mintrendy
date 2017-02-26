@@ -53,7 +53,7 @@ class ProductList extends React.Component {
                         {this.props.filters.map((item, idx) => {
                             let links = item.collections.map((col) => {
                                 return {
-                                    name: intlStore.getMessage(col.name),
+                                    name: col.name,
                                     to: 'collection-slug',
                                     params: {
                                         locale: intlStore.getCurrentLocale(),

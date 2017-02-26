@@ -66,7 +66,7 @@ class CartItem extends React.Component {
                     <Link className="cart-item__link"
                           to="product" params={linkParams}
                           onClick={this.handleLinkClick}>
-                        <img className="cart-item__image" src={product.images && product.images.length > 0 ? `//${product.images[0].url}` : this.state.placeholderImage} />
+                        <img className="cart-item__image" src={product.images && product.images.length > 0 ? product.images[0] : this.state.placeholderImage} />
                     </Link>
                 </div>
                 <div className="cart-item__details">

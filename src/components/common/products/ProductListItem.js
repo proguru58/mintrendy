@@ -69,13 +69,13 @@ class ProductListItem extends React.Component {
                     <div className="product-list-item__image">
                         {this.props.product.images && this.props.product.images.length > 0 ?
                             <span style={{display: 'none'}} itemProp="image">
-                                {`//${this.props.product.images[0].url}`}
+                                {this.props.product.images[0]}
                             </span>
                             :
                             null
                         }
                         {this.props.product.images && this.props.product.images.length > 0 ?
-                            <img src={`//${this.props.product.images[0].url}`} />
+                            <img src={this.props.product.images[0]} />
                             :
                             <img src={this.state.productPlaceholderImage} />
                         }

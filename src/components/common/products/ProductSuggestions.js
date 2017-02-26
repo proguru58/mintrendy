@@ -73,7 +73,7 @@ class ProductSuggestions extends React.Component {
                                 productId: product.id,
                                 productSlug: slugify(intlStore.getMessage(product.name))
                             }, routeParams);
-                            let image = (product.images && product.images.length > 0) ? `//${product.images[0].url}` : this.state.placeholderImage;
+                            let image = (product.images && product.images.length > 0) ? product.images[0] : this.state.placeholderImage;
                             return (
                                 <div key={idx} className="product-suggestions__item">
                                     <Link to="product-slug" params={params}>

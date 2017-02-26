@@ -35,8 +35,7 @@ class ImageGallery extends React.Component {
             <div className="image-gallery">
                 <div className="image-gallery__current">
                     {this.props.images.length > 0 ?
-                        <img src={`//${this.props.images[this.state.selectedImage].url}`}
-                             alt={this.props.images[this.state.selectedImage].alt} />
+                        <img src={this.props.images[this.state.selectedImage]} />
                         :
                         <div>No Image</div>
                     }
@@ -50,7 +49,7 @@ class ImageGallery extends React.Component {
                             }
                             return (
                                 <div key={idx} className={imageClass} onClick={this.handleImageClick.bind(null, idx)}>
-                                    <img src={`//${img.url}`} alt={img.alt} />
+                                    <img src={img}/>
                                 </div>
                             );
                         })}

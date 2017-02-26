@@ -7,10 +7,12 @@ import {FormattedMessage} from 'react-intl';
 
 // Flux
 import CollectionsStore from '../../../stores/Collections/CollectionsStore';
+import CategoriesStore from '../../../stores/Categories/CategoriesStore';
 import IntlStore from '../../../stores/Application/IntlStore';
 import ProductsListStore from '../../../stores/Products/ProductsListStore';
 
 import fetchProducts from '../../../actions/Products/fetchProducts';
+import fetchAllCategories from '../../../actions/Categories/fetchAllCategories';
 
 // Required components
 import Breadcrumbs from '../../common/navigation/Breadcrumbs';
@@ -54,7 +56,7 @@ class ProductListingPage extends React.Component {
     //*** Initial State ***//
 
     state = {
-        categories: this.context.getStore(CollectionsStore).getCollections(['category']),
+        categories: this.context.getStore(CategoriesStore).getCategories(),
         collections: this.context.getStore(CollectionsStore).getCollections(['collection']),
         products: this.context.getStore(ProductsListStore).getProducts(),
         totalPages: this.context.getStore(ProductsListStore).getTotalPages(),
@@ -67,6 +69,9 @@ class ProductListingPage extends React.Component {
 
         // Component styles
         require('./ProductListingPage.scss');
+
+        //*** Required Data ***//
+        context.executeAction(fetchAllCategories);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -171,12 +176,12 @@ class ProductListingPage extends React.Component {
 /**
  * Flux
  */
-ProductListingPage = connectToStores(ProductListingPage, [CollectionsStore, ProductsListStore], (context) => {
+ProductListingPage = connectToStores(ProductListingPage, [CategoriesStore, CollectionsStore, ProductsListStore], (context) => {
     return {
         _products: context.getStore(ProductsListStore).getProducts(),
         _totalPages: context.getStore(ProductsListStore).getTotalPages(),
         _currentPage: context.getStore(ProductsListStore).getCurrentPage(),
-        _categories: context.getStore(CollectionsStore).getCollections(['category']),
+        _categories: context.getStore(CategoriesStore).getCategories(),
         _collections: context.getStore(CollectionsStore).getCollections(['collection'])
     };
 });

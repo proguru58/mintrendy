@@ -9,6 +9,7 @@ import {slugify} from '../../../utils/strings';
 
 // Flux
 import CollectionsStore from '../../../stores/Collections/CollectionsStore';
+import CategoriesStore from '../../../stores/Categories/CategoriesStore';
 import IntlStore from '../../../stores/Application/IntlStore';
 import ProductsListStore from '../../../stores/Products/ProductsListStore';
 
@@ -64,7 +65,7 @@ class CollectionProductsPage extends React.Component {
     //*** Initial State ***//
 
     state = {
-        categories: this.context.getStore(CollectionsStore).getCollections(['category']),
+        categories: this.context.getStore(CategoriesStore).getCategories(),
         collections: this.context.getStore(CollectionsStore).getCollections(['collection']),
         products: this.context.getStore(ProductsListStore).getProducts(),
         totalPages: this.context.getStore(ProductsListStore).getTotalPages(),
@@ -204,7 +205,7 @@ CollectionProductsPage = connectToStores(CollectionProductsPage, [CollectionsSto
         _products: context.getStore(ProductsListStore).getProducts(),
         _totalPages: context.getStore(ProductsListStore).getTotalPages(),
         _currentPage: context.getStore(ProductsListStore).getCurrentPage(),
-        _categories: context.getStore(CollectionsStore).getCollections(['category']),
+        _categories: context.getStore(CategoriesStore).getCollections(),
         _collections: context.getStore(CollectionsStore).getCollections(['collection'])
     };
 });

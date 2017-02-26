@@ -13,6 +13,7 @@ import CollectionsFeaturedHomepage from './stores/Collections/CollectionsFeature
 import CollectionsStore from './stores/Collections/CollectionsStore';
 import CollectionsListStore from './stores/Collections/CollectionsListStore';
 import CollectionDetailsStore from './stores/Collections/CollectionDetailsStore';
+import CategoriesStore from './stores/Categories/CategoriesStore';
 import ContentsAddStore from './stores/Contents/ContentsAddStore';
 import ContentsListStore from './stores/Contents/ContentsListStore';
 import ContentDetailsStore from './stores/Contents/ContentDetailsStore';
@@ -58,6 +59,7 @@ const app = new Fluxible({
         CollectionsStore,
         CollectionsListStore,
         CollectionDetailsStore,
+        CategoriesStore,
         ContentsAddStore,
         ContentsListStore,
         ContentDetailsStore,
