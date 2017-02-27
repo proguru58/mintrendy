@@ -48,7 +48,7 @@ import AdminProductsEdit from './components/pages/Admin/Products/AdminProductsEd
  */
 const routes = (
     <Route name="app" path="/:locale" handler={Application}>
-        <DefaultRoute name="homepage" handler={Homepage} />
+        <DefaultRoute name="homepage" handler={ProductListingPage} />
         <Route name="login" handler={Login} />
         <Route name="logout" handler={Logout} />
         <Route name="register" handler={Register} />
