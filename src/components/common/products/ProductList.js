@@ -49,22 +49,6 @@ class ProductList extends React.Component {
         return (
             <div className="product-list">
                 <div className="product-list__container">
-                    {this.props.title ?
-                        <div className="product-list__title">
-                            <Heading size="medium">{this.props.title}</Heading>
-                        </div>
-                        :
-                        null
-                    }
-                    {hasDescription() ?
-                        <div className="product-list__category-description">
-                            <Text size="small">
-                                {this.props.category.name}
-                            </Text>
-                        </div>
-                        :
-                        null
-                    }
                     {this.props.children ?
                         <div className="product-list__content">
                             {this.props.children}
