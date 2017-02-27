@@ -8,32 +8,6 @@
     }
 }
 
-// Sidebar
-
-.product-list__sidebar {
-    width: 20%;
-    min-width: 250px;
-    @include breakpoint(handhelds) {
-        width: 100%;
-    }
-    @include breakpoint(medium-screens) {
-        padding-right: 30px;
-    }
-    @include breakpoint(wide-screens) {
-        padding-right: 30px;
-    }
-}
-
-.product-list__filter {
-    &:not(:first-child) {
-        margin-top: 40px;
-
-        @include breakpoint(handhelds) {
-            margin-top: 15px;
-        }
-    }
-}
-
 // List
 
 .product-list__container {

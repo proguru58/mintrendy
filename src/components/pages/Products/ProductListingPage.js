@@ -5,8 +5,9 @@ import React from 'react';
 import connectToStores from 'fluxible-addons-react/connectToStores';
 import {FormattedMessage} from 'react-intl';
 
+import {slugify} from '../../../utils/strings';
+
 // Flux
-import CollectionsStore from '../../../stores/Collections/CollectionsStore';
 import CategoriesStore from '../../../stores/Categories/CategoriesStore';
 import IntlStore from '../../../stores/Application/IntlStore';
 import ProductsListStore from '../../../stores/Products/ProductsListStore';
@@ -15,9 +16,8 @@ import fetchProducts from '../../../actions/Products/fetchProducts';
 import fetchAllCategories from '../../../actions/Categories/fetchAllCategories';
 
 // Required components
-import Breadcrumbs from '../../common/navigation/Breadcrumbs';
 import ProductList from '../../common/products/ProductList';
-import ProductsSortingSelect from '../../common/products/ProductsSortingSelect';
+import CategoriesNavigation from '../../common/navigation/CategoriesNavigation';
 
 // Translation data for this component
 import intlData from './ProductListingPage.intl';
@@ -57,7 +57,6 @@ class ProductListingPage extends React.Component {
 
     state = {
         categories: this.context.getStore(CategoriesStore).getCategories(),
-        collections: this.context.getStore(CollectionsStore).getCollections(['collection']),
         products: this.context.getStore(ProductsListStore).getProducts(),
         totalPages: this.context.getStore(ProductsListStore).getTotalPages(),
         currentPage: this.context.getStore(ProductsListStore).getCurrentPage()
@@ -77,7 +76,6 @@ class ProductListingPage extends React.Component {
     componentWillReceiveProps(nextProps) {
         this.setState({
             categories: nextProps._categories,
-            collections: nextProps._collections,
             products: nextProps._products,
             totalPages: nextProps._totalPages,
             currentPage: nextProps._currentPage
@@ -119,17 +117,16 @@ class ProductListingPage extends React.Component {
             }
         ];
 
-        // Products SideMenu
-        var filters = [
-            {
-                name: {en: 'Categories', pt: 'Categorias'},
-                collections: this.state.categories
-            },
-            {
-                name: {en: 'Collections', pt: 'Colecções'},
-                collections: this.state.collections
-            }
-        ];
+        let categories = this.state.categories.map(function (category) {
+            return {
+                name: category.name,
+                to: 'category-slug',
+                params: {
+                    categoryId: category.id,
+                    categorySlug: slugify(category.value)
+                }
+            };
+        });
 
         //
         // Return
@@ -138,29 +135,13 @@ class ProductListingPage extends React.Component {
             <div className="product-listing-page">
                 <div>
                     <div className="product-listing-page__header">
-                        <div className="product-listing-page__breadcrumbs">
-                            <Breadcrumbs links={breadcrumbs}>
-                                {this.state.totalPages > 0 ?
-                                    <FormattedMessage
-                                        message={intlStore.getMessage(intlData, 'pagination')}
-                                        locales={intlStore.getCurrentLocale()}
-                                        currentPage={this.state.currentPage}
-                                        totalPages={this.state.totalPages} />
-                                    :
-                                    null
-                                }
-                            </Breadcrumbs>
-                        </div>
-                        <div className="product-listing-page__sorting">
-                            <ProductsSortingSelect onChange={this.handleSortChange} />
-                        </div>
+                        <CategoriesNavigation links={categories} />
                     </div>
 
                     <div className="product-listing-page__products">
                         <ProductList title={<FormattedMessage
                                                     message={intlStore.getMessage(intlData, 'pageTitle')}
                                                     locales={intlStore.getCurrentLocale()} />}
-                                     filters={filters}
                                      products={this.state.products}
                                      paginateTo="products"
                                      routeParams={routeParams}
@@ -176,13 +157,12 @@ class ProductListingPage extends React.Component {
 /**
  * Flux
  */
-ProductListingPage = connectToStores(ProductListingPage, [CategoriesStore, CollectionsStore, ProductsListStore], (context) => {
+ProductListingPage = connectToStores(ProductListingPage, [CategoriesStore, ProductsListStore], (context) => {
     return {
         _products: context.getStore(ProductsListStore).getProducts(),
         _totalPages: context.getStore(ProductsListStore).getTotalPages(),
         _currentPage: context.getStore(ProductsListStore).getCurrentPage(),
-        _categories: context.getStore(CategoriesStore).getCategories(),
-        _collections: context.getStore(CollectionsStore).getCollections(['collection'])
+        _categories: context.getStore(CategoriesStore).getCategories()
     };
 });
 

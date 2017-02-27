@@ -4,6 +4,8 @@
 import React from 'react';
 import {Link} from 'react-router';
 
+import InputField from '../forms/InputField';
+
 // Flux
 import IntlStore from '../../../stores/Application/IntlStore';
 
@@ -34,19 +36,9 @@ class MainNavigation extends React.Component {
         // Return
         return (
             <div className="main-navigation">
-                <nav>
-                    <ul>
-                        {this.props.links.map(function (link, idx) {
-                            return (
-                                <li key={idx} className="main-navigation__item">
-                                    <Link to={link.to} params={Object.assign(link.params || {}, routeParams)}>
-                                        {link.name}
-                                    </Link>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </nav>
+                <div className="main-navigation__search-term">
+                    <InputField placeholder='Search' />
+                </div>
             </div>
         );
     }

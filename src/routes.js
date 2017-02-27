@@ -11,6 +11,7 @@ import NotFound from './components/pages/NotFound/NotFound';
 import Homepage from './components/pages/Homepage/Homepage';
 import Checkout from './components/pages/Checkout/Checkout';
 import CollectionProductsPage from './components/pages/Collections/CollectionProductsPage';
+import CategoryProductsPage from './components/pages/Categories/CategoryProductsPage';
 import ProductListingPage from './components/pages/Products/ProductListingPage';
 import ProductPage from './components/pages/Products/ProductPage';
 
@@ -60,6 +61,8 @@ const routes = (
         </Route>
         <Route name="collection" path="collections/:collectionId/?" handler={CollectionProductsPage} />
         <Route name="collection-slug" path="collections/:collectionId/:collectionSlug/?" handler={CollectionProductsPage} />
+        <Route name="category" path="categories/:categoryId/?" handler={CategoryProductsPage} />
+        <Route name="category-slug" path="categories/:categoryId/:categorySlug/?" handler={CategoryProductsPage} />
         <Route name="products" path="products/?" handler={ProductListingPage} />
         <Route name="product" path="products/:productId/?" handler={ProductPage} />
         <Route name="product-slug" path="products/:productId/:productSlug/?" handler={ProductPage} />

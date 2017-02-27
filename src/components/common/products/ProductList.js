@@ -43,43 +43,11 @@ class ProductList extends React.Component {
         let intlStore = this.context.getStore(IntlStore);
 
         let hasDescription = () => {
-            return this.props.collection && this.props.collection.description && this.props.collection.description[intlStore.getCurrentLocale()];
+            return this.props.category && this.props.category.description && this.props.category.description[intlStore.getCurrentLocale()];
         };
 
         return (
             <div className="product-list">
-                {this.props.filters ?
-                    <div className="product-list__sidebar">
-                        {this.props.filters.map((item, idx) => {
-                            let links = item.collections.map((col) => {
-                                return {
-                                    name: col.name,
-                                    to: 'collection-slug',
-                                    params: {
-                                        locale: intlStore.getCurrentLocale(),
-                                        collectionId: col.id,
-                                        collectionSlug: slugify(intlStore.getMessage(col.name))
-                                    },
-                                    selected: this.props.collection ? col.id === this.props.collection.id : false
-                                };
-                            });
-                            if (links.length > 0) {
-                                return (
-                                    <div key={idx} className="product-list__filter">
-                                        <TreeMenu links={links}>
-                                            <FormattedMessage
-                                                message={intlStore.getMessage(item.name)}
-                                                locales={intlStore.getCurrentLocale()} />
-                                        </TreeMenu>
-                                    </div>
-                                );
-                            }
-                        })}
-                    </div>
-                    :
-                    null
-                }
-
                 <div className="product-list__container">
                     {this.props.title ?
                         <div className="product-list__title">
@@ -89,9 +57,9 @@ class ProductList extends React.Component {
                         null
                     }
                     {hasDescription() ?
-                        <div className="product-list__collection-description">
+                        <div className="product-list__category-description">
                             <Text size="small">
-                                {intlStore.getMessage(this.props.collection.description)}
+                                {this.props.category.name}
                             </Text>
                         </div>
                         :
@@ -125,7 +93,7 @@ class ProductList extends React.Component {
                     </div>
                     {this.props.totalPages && this.props.currentPage && this.props.routeParams && this.props.totalPages > 1 ?
                         <div className="product-list__pagination">
-                            <Pagination to={this.props.paginateTo || 'collection'}
+                            <Pagination to={this.props.paginateTo || 'category'}
                                         params={this.props.routeParams}
                                         totalPages={this.props.totalPages}
                                         currentPage={this.props.currentPage} />

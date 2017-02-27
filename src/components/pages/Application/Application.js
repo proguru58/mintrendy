@@ -21,7 +21,6 @@ import triggerDrawer from '../../../actions/Application/triggerDrawer';
 
 // Required components
 import Drawer from '../../common/layout/Drawer/Drawer';
-import Footer from '../../common/layout/Footer';
 import Header from '../../common/layout/Header';
 import Heading from '../../common/typography/Heading';
 import OverlayLoader from '../../common/indicators/OverlayLoader';
@@ -157,7 +156,6 @@ class Application extends React.Component {
                             <RouteHandler />
                         </div>
                     </div>
-                    <Footer />
                 </div>
             </div>
         );
