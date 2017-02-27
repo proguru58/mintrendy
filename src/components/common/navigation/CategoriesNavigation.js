@@ -43,18 +43,19 @@ class CategoriesNavigation extends React.Component {
                         </Link>
                     );
                 })}
-                <div className="categories-navigation__dropdown">
-                    <button className="categories-navigation__dropbtn">More</button>
-                    <div className="categories-navigation__dropdown-content">
-                        {this.props.links.slice(9).map(function (link, idx) {
-                            return (
-                                <Link key={idx} to={link.to} params={Object.assign(link.params || {}, routeParams)} className={category && category.name == link.name ? 'active' : ''}>
-                                    {link.name}
-                                </Link>
-                            );
-                        })}
-                    </div>
-                </div>
+                {this.props.links.length > 9 &&
+                    (<div className="categories-navigation__dropdown">
+                        <button className="categories-navigation__dropbtn">More</button>
+                        <div className="categories-navigation__dropdown-content">
+                            {this.props.links.slice(9).map(function (link, idx) {
+                                return (
+                                    <Link key={idx} to={link.to} params={Object.assign(link.params || {}, routeParams)} className={category && category.name == link.name ? 'active' : ''}>
+                                        {link.name}
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    </div>)}
             </div>
         );
     }
