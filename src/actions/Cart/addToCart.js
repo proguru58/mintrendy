@@ -57,6 +57,7 @@ export default function addToCart(context, payload, done) {
     context.dispatch(cartActions.CART_UPDATE);
     context.api.cart.patch(cartId, {product: {
         id: payload.id,
+        variationSku: payload.variationSku,
         quantity: payload.quantity
     }}, cartAccessToken).then(function successFn(result) {
         context.dispatch(cartActions.CART_UPDATE_SUCCESS, result);

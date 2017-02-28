@@ -63,6 +63,7 @@ class SideCart extends React.Component {
     handleQuantityChange = (product, value) => {
         let payload = Object.assign({details: product.details}, {
             id: product.id,
+            variationSku: product.sku,
             quantity: value
         });
         this.context.executeAction(addToCart, payload);

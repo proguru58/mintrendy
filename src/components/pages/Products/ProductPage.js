@@ -166,6 +166,7 @@ class ProductPage extends React.Component {
     handleAddToCartClick = () => {
         let payload = Object.assign({details: this.state.product}, {
             id: this.state.product.id,
+            variationSku: this.state.product.sku,
             quantity: this.getQuantityInCart() + this.state.quantity
         });
         this.setState({addingToCart: true});
@@ -306,21 +307,13 @@ class ProductPage extends React.Component {
                                                           onChange={this.handleQuantityChange} />
                                     </div>
                                     <div className="product-page__add-buttons">
-                                        {this.state.product.stock > 0 ?
-                                            <Button type="primary"
-                                                    onClick={this.handleAddToCartClick}
-                                                    disabled={this.state.quantity <= 0 || this.state.cartLoading}>
-                                                <FormattedMessage
-                                                    message={intlStore.getMessage(intlData, 'addToCart')}
-                                                    locales={intlStore.getCurrentLocale()} />
-                                            </Button>
-                                            :
-                                            <Button type="primary" disabled={true}>
-                                                <FormattedMessage
-                                                    message={intlStore.getMessage(intlData, 'outOfStock')}
-                                                    locales={intlStore.getCurrentLocale()} />
-                                            </Button>
-                                        }
+                                        <Button type="primary"
+                                                onClick={this.handleAddToCartClick}
+                                                disabled={this.state.quantity <= 0 || this.state.cartLoading}>
+                                            <FormattedMessage
+                                                message={intlStore.getMessage(intlData, 'addToCart')}
+                                                locales={intlStore.getCurrentLocale()} />
+                                        </Button>
                                     </div>
                                 </div>
 

@@ -61,12 +61,9 @@ class CartsAPI {
     /**
      * Partial Cart updates
      */
-    patch(cartId, payload, cartAccessToken) {
+    patch(cartId, payload) {
         return new Promise((resolve, reject) => {
             let request = superagent.patch(`${this.baseUrl}/carts/${cartId}`).send(payload);
-            if (cartAccessToken) {
-                request.query({accessToken: cartAccessToken});
-            }
             this._wrapAndRequest(request, resolve, reject);
         });
     }
